@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
 
   get '/companies' do
     if logged_in
+      @user = current_user
       erb :'/companies/index'
     else
       redirect '/'
@@ -26,9 +27,13 @@ class CompaniesController < ApplicationController
   post '/companies' do
     if logged_in
       @user = current_user
-      @company = Company.new(name: params[:name], website: params[:website])
-      if !@user.companies.include?(Company.find_by(name: params[:name])) && @company.save
-        redirect to("/companies")
+      if !@user.companies.include?(Company.find_by(name: params[:name]))
+        @company = @user.companies.new(name: params[:name], website: params[:website])
+        if @company.save
+          redirect to("/companies")
+        else
+          erb :error
+        end
       else
         erb :error
       end
@@ -39,6 +44,7 @@ class CompaniesController < ApplicationController
 
   get '/companies/:slug' do
     if logged_in
+
     end
   end
 
