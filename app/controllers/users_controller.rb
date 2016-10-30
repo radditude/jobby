@@ -60,10 +60,44 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/user/:id' do
+  get '/user' do
     if logged_in
       @user = current_user
       erb :'/users/show'
+    else
+      redirect '/'
+    end
+  end
+
+  get '/user/edit' do
+    if logged_in
+      @user = current_user
+      erb :'/users/edit'
+    else
+      redirect '/'
+    end
+  end
+
+  patch '/user' do
+    if logged_in
+      @user = current_user
+      @user.username = params[:username]
+      @user.email = params[:email]
+      if @user.save
+        redirect to("/user/#{@user.id}")
+      else
+        redirect to("/user/#{@user.id}/edit")
+      end
+    else
+      redirect '/'
+    end
+  end
+
+  delete '/user' do
+    if logged_in
+      user = current_user
+      user.destroy
+      redirect '/'
     else
       redirect '/'
     end

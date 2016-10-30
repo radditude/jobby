@@ -1,0 +1,7 @@
+<form action="/user" method="post">
+  <input id="hidden" type="hidden" name = "_method" value="PATCH">
+  <input type="text" name="username" value="<%= @user.username %>">
+  <input type="text" name="email" value="<%= @user.email %>">
+  <input type="password" name="password" value="">
+  <input type="submit" name="submit" value="Save New Info">
+</form>
