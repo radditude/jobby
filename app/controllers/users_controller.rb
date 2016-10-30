@@ -60,4 +60,13 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/user/:id' do
+    if logged_in
+      @user = current_user
+      erb :'/users/show'
+    else
+      redirect '/'
+    end
+  end
+
 end
