@@ -26,8 +26,10 @@ Routes:
 - delete /contacts/:id
 
 - get /user/:id - user profile
-- get /user/new - signup page
-- post /user - make new user (logs in and redirects to user home)
+- *get /signup - signup page
+- *post /signup - make new user (logs in and redirects to user home)
+- *get /login
+- *post /login*
 - get /user/edit - edit password, etc
 - patch /user/:id
 - get /user/logout

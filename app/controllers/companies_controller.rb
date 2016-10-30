@@ -1,6 +1,4 @@
-require './config/environment'
-
-class CompaniesController < Sinatra::Base
+class CompaniesController < ApplicationController
 
   configure do
     set :public_folder, 'public'

@@ -1,6 +1,4 @@
-require './config/environment'
-
-class ContactsController < Sinatra::Base
+class ContactsController < ApplicationController
 
   configure do
     set :public_folder, 'public'
