@@ -1,4 +1,4 @@
 <h1>*Some companies will go here!*</h1>
 <% @user.companies.each do |company| %>
-  <p><%= company.name %></p>
+  <p><a href="/companies/<%= company.slug %>"><%= company.name %></a></p>
 <% end %>

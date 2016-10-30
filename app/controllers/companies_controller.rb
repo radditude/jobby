@@ -53,7 +53,35 @@ class CompaniesController < ApplicationController
   end
   
   get '/companies/:slug/edit' do
-    
+    if logged_in
+      @company = current_user.companies.find_by_slug(params[:slug])
+      erb :'/companies/edit'
+    else
+      redirect '/'
+    end
+  end
+  
+  patch '/companies/:slug' do
+    if logged_in
+      @company = current_user.companies.find_by_slug(params[:slug])
+      if @company.update(name: params[:name], website: params[:website])
+        redirect to("/companies/#{@company.slug}")
+      else
+        erb :error
+      end
+    else
+      redirect '/'
+    end
+  end
+  
+  delete '/companies/:slug' do
+    if logged_in
+      @company = current_user.companies.find_by_slug(params[:slug])
+      @company.destroy
+      redirect '/companies'
+    else
+      redirect '/'
+    end
   end
 
 end

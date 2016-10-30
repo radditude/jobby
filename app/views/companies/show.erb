@@ -2,3 +2,9 @@
 <% if @company.website != "" %>
     <p><a href="<%= @company.website %>">Website</a></p>
 <% end %>
+<p><a href="/companies/<%= @company.slug %>/edit">Edit Info</a></p>
+
+<form action="/companies/<%= @company.slug %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" name="delete" value="Delete Company">
+</form>

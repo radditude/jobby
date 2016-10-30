@@ -1,0 +1,6 @@
+<form action="/companies/<%= @company.slug %>" method="post">
+    <input id="hidden" type="hidden" name = "_method" value="PATCH">
+    <input type="text" name="name" value="<%= @company.name %>">
+    <input type="text" name="website" value="<%= @company.website %>">
+    <input type="submit" name="submit" value="Save New Company Info">
+</form>

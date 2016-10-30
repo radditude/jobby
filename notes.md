@@ -9,13 +9,13 @@ Routes:
 - patch /potentialjobs/:id - patch request w/ form info to edit DB entry for job
 - delete /potentialjobs/:id - deletes just the job, not the companies or contacts
 
-- get /companies/index - all the companies - just names, maybe a note of how many contacts/jobs? with links to full view
-- get /companies/new - form to make a company, assign it to a job or a contact
-- post /companies - creates/updates company/jobs/contacts as needed
-- get /companies/:id - one company, with all the info, link to edit/delete, add job, add contact
-- get /companies/:id/edit - form to edit
-- patch /companies/:id - pushes edits to company
-- delete /companies/:id
+X - get /companies/index - all the companies - just names, maybe a note of how many contacts/jobs? with links to full view
+X - get /companies/new - form to make a company, assign it to a job or a contact
+X - post /companies - creates/updates company/jobs/contacts as needed
+X - get /companies/:slug - one company, with all the info, link to edit/delete, add job, add contact
+X - get /companies/:id/edit - form to edit
+X - patch /companies/:id - pushes edits to company
+X - delete /companies/:id
 
 - get /contacts/index -
 - get /contacts/new -
@@ -25,12 +25,14 @@ Routes:
 - patch /contacts/:id -
 - delete /contacts/:id
 
-<!-- - get /user/:id - user profile
-- get /signup - signup page
-- post /signup - make new user (logs in and redirects to user home)
-- get /login
-- post /login
-- get /user/edit - edit password, etc
-- patch /user/:id
-- get /user/logout
-- delete /user/:id -->
+X - get /user/:id - user profile
+X - get /signup - signup page
+X - post /signup - make new user (logs in and redirects to user home)
+X - get /login
+X - post /login
+X - get /user/edit - edit password, etc
+X - patch /user/:id
+X - get /user/logout
+X - delete /user/:id 
+
+https://jobby-radditude.c9users.io
