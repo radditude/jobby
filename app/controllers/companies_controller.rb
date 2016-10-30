@@ -44,8 +44,16 @@ class CompaniesController < ApplicationController
 
   get '/companies/:slug' do
     if logged_in
-
+      @user = current_user
+      @company = @user.companies.find_by_slug(params[:slug])
+      erb :'/companies/show'
+    else
+      redirect '/'
     end
+  end
+  
+  get '/companies/:slug/edit' do
+    
   end
 
 end
