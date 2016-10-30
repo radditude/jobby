@@ -8,8 +8,38 @@ class CompaniesController < ApplicationController
   end
 
   get '/companies' do
-    erb :'/companies/index'
+    if logged_in
+      erb :'/companies/index'
+    else
+      redirect '/'
+    end
   end
 
+  get '/companies/new' do
+    if logged_in
+      erb :'/companies/new'
+    else
+      redirect '/'
+    end
+  end
+
+  post '/companies' do
+    if logged_in
+      @user = current_user
+      @company = Company.new(name: params[:name], website: params[:website])
+      if !@user.companies.include?(Company.find_by(name: params[:name])) && @company.save
+        redirect to("/companies")
+      else
+        erb :error
+      end
+    else
+      redirect '/'
+    end
+  end
+
+  get '/companies/:slug' do
+    if logged_in
+    end
+  end
 
 end
