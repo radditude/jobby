@@ -14,4 +14,21 @@ Routes:
 - post /companies - creates/updates company/jobs/contacts as needed
 - get /companies/:id - one company, with all the info, link to edit/delete, add job, add contact
 - get /companies/:id/edit - form to edit
-- 
+- patch /companies/:id - pushes edits to company
+- delete /companies/:id
+
+- get /contacts/index -
+- get /contacts/new -
+- post /contacts -
+- get /contacts/:id -
+- get /contacts/:id/edit -
+- patch /contacts/:id -
+- delete /contacts/:id
+
+- get /user/:id - user profile
+- get /user/new - signup page
+- post /user - make new user (logs in and redirects to user home)
+- get /user/edit - edit password, etc
+- patch /user/:id
+- get /user/logout
+- delete /user/:id

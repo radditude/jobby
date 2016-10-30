@@ -1,6 +1,6 @@
 require './config/environment'
 
-class ApplicationController < Sinatra::Base
+class CompaniesController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
@@ -9,8 +9,5 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "difficult_passphrase"
   end
 
-  get "/" do
-    erb :welcome
-  end
 
 end
