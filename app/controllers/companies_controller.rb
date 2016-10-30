@@ -7,5 +7,9 @@ class CompaniesController < ApplicationController
     set :session_secret, "difficult_passphrase"
   end
 
+  get '/companies' do
+    erb :'/companies/index'
+  end
+
 
 end
