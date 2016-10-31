@@ -12,9 +12,9 @@ class ApplicationController < Sinatra::Base
   get "/" do
     if logged_in
       @user = current_user
-      redirect '/potentialjobs'
+      erb :'/application/home'
     else
-      erb :welcome
+      erb :'/application/welcome'
     end
   end
 

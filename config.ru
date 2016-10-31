@@ -7,6 +7,5 @@ end
 use Rack::MethodOverride
 run ApplicationController
 use UsersController
-use ContactsController
 use CompaniesController
 use PotentialJobsController
