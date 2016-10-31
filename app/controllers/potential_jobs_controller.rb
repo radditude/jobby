@@ -58,6 +58,40 @@ class PotentialJobsController < ApplicationController
     end
   end
 
+  get '/potentialjobs/:id/edit' do
+    if logged_in
+      @user = current_user
+      @job = current_user.potential_jobs.find_by_id(params[:id])
+      erb :'/potential-jobs/edit'
+    else
+      redirect '/'
+    end
+  end
+
+  patch '/potentialjobs/:id' do
+    if logged_in
+      @user = current_user
+      if params[:new_company] == ""
+        if params[:company] == ""
+          erb :error
+        else
+          @company = @user.companies.find_by_id(params[:company])
+        end
+      else
+        @company = @user.companies.create(name: params[:new_company])
+        #binding.pry
+      end
+      job = @company.potential_jobs.find_by_id(params[:id])
+      if job.update(job_title: params[:job_title], link: params[:link], status: params[:status])
+        redirect '/potentialjobs'
+      else
+        erb :error
+      end
+    else
+      redirect '/'
+    end
+  end
+
   delete '/potentialjobs/:id' do
     if logged_in
       user = current_user
