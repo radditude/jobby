@@ -1,0 +1,9 @@
+<h1><%= @job.job_title %> | <%= @job.company.name %> | <%= @job.status %></h1>
+
+<p><a href="/potentialjobs/<%= @job.id %>/edit">Edit Info</a></p>
+<p><a href="/potentialjobs">Back to List</a></p>
+
+<form action="/potentialjobs/<%= @job.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" name="delete" value="Delete This Job">
+</form>

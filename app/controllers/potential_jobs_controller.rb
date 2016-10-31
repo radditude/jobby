@@ -48,5 +48,26 @@ class PotentialJobsController < ApplicationController
     end
   end
 
+  get '/potentialjobs/:id' do
+    if logged_in
+      @user = current_user
+      @job = @user.potential_jobs.find_by_id(params[:id])
+      erb :'/potential-jobs/show'
+    else
+      redirect '/'
+    end
+  end
+
+  delete '/potentialjobs/:id' do
+    if logged_in
+      user = current_user
+      job = user.potential_jobs.find_by_id(params[:id])
+      job.destroy
+      redirect '/'
+    else
+      redirect '/'
+    end
+  end
+
 
 end
