@@ -1,0 +1,24 @@
+<form action="/potentialjobs" method="post">
+  <input type="text" name="job_title" placeholder="Job Title">
+  <input type="text" name="link" placeholder="Link to Posting">
+  <label>Status:</label>
+  <select name="status">
+    <option value="Not yet applied">Not yet applied</option>
+    <option value="Applied">Applied</option>
+    <option value="Phone screen">Phone screen</option>
+    <option value="Interview">Interview</option>
+    <option value="Offer">Offer</option>
+    <option value="Declined">Declined</option>
+  </select>
+  <br />
+  <label>Choose an existing company:</label>
+  <select name="company">
+      <option value="">Choose company</option>
+      <% @user.companies.each do |company|%>
+          <option value="<%= company.id %>"><%= company.name %></option>
+      <% end %>
+  </select>
+  <label>Or add a new company:</label>
+  <input type="text" name="new_company" placeholder="New Company's Name">
+  <input type="submit" name="submit" value="Add Potential Job">
+</form>

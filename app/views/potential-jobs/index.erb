@@ -1,1 +1,7 @@
 <h1>Some Jobs Will Go Here!</h1>
+<h4><a href="/potentialjobs/new">Add New</a></h4>
+<% @user.potential_jobs.each do |job| %>
+  <p>
+    <a href="/potentialjobs/<%= job.id %>"><%= job.job_title %> | <%= job.company.name %> | <%= job.status %></a>
+  </p>
+<% end %>

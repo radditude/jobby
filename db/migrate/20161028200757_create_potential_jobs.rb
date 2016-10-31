@@ -5,7 +5,7 @@ class CreatePotentialJobs < ActiveRecord::Migration
       t.string :link
       t.integer :company_id
       t.timestamps null: false
-      t.string :status, null: false, default: "not yet applied"
+      t.string :status, null: false, default: "Not yet applied"
     end
   end
 end
