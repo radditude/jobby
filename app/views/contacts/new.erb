@@ -5,6 +5,7 @@
   <br />
   <label>Choose an existing company:</label>
   <select name="company">
+      <option value="">Choose company</option>
       <% @user.companies.each do |company|%>
           <option value="<%= company.id %>"><%= company.name %></option>
       <% end %>
