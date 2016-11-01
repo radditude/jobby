@@ -1,3 +1,11 @@
+<% @title = "Jobby - View Company Info" %>
+
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/companies">Companies</a></li>
+  <li><a href="/companies/<%= @company.id %>">View Job</a></li>
+</ol>
+
 <h1><%= @company.name %></h1>
 <% if @company.website != "" %>
     <p><a href="<%= @company.website %>">Website</a></p>

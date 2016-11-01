@@ -1,4 +1,18 @@
-<h1><%= @job.job_title %> | <%= @job.company.name %> | <%= @job.status %></h1>
+<% @title = "Jobby - View Info" %>
+
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/potentialjobs">Potential Jobs</a></li>
+  <li><a href="/potentialjobs/<%= @job.id %>">View Job</a></li>
+</ol>
+
+<h2><%= @job.job_title %> at <b><%= @job.company.name %></b></h2> 
+
+<p>Status: <%= @job.status %></p>
+
+<p><a href="<%= @job.link %>">Link to application page</a></p>
+
+<p><i>Last updated on <%= @job.updated_at.strftime("%B %e") %></i></p>
 
 <p><a href="/potentialjobs/<%= @job.id %>/edit">Edit Info</a></p>
 <p><a href="/potentialjobs">Back to List</a></p>

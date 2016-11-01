@@ -2,4 +2,4 @@
 
 <h1>Welcome back, <%= @current_user.username %>!</h1>
 
-<h3>You have <a href="/potential_jobs"><%= @current_user.potential_jobs.where("status = ?", "Not yet applied").length %></a> jobs waiting for applications.</h3>
+<h3>You have <a href="/potentialjobs"><%= @current_user.potential_jobs.where("status = ?", "Not yet applied").length %></a> jobs waiting for applications.</h3>
