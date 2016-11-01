@@ -1,3 +1,5 @@
+<% @title = "Jobby - Edit Job Info" %>
+
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a href="/potentialjobs">Potential Jobs</a></li>
@@ -10,15 +12,17 @@
 <form action="/potentialjobs/<%= @job.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <div class="form-group">
-    <input type="text" name="job_title" value="<%= @job.job_title %>">
+    <label>Job Title</label>
+    <input class="form-control" type="text" name="job_title" value="<%= @job.job_title %>">
   </div>
   <div class="form-group">
-    <input type="text" name="link" value="<%= @job.link %>">
+    <label>Link to Posting</label>
+    <input class="form-control" type="text" name="link" value="<%= @job.link %>">
   </div>
   
   <div class="form-group">
     <label>Status:</label>
-    <select name="status">
+    <select class="form-control" name="status">
       <option value="Not yet applied">Not yet applied</option>
       <option value="Applied">Applied</option>
       <option value="Phone screen">Phone screen</option>
@@ -29,7 +33,7 @@
   </div>
   <div class="form-group">
     <label>Choose an existing company:</label>
-    <select name="company">
+    <select class="form-control" name="company">
       <option value="">Choose company</option>
       <% @current_user.companies.each do |company|%>
           <option value="<%= company.id %>" <% if @job.company == company %> selected="selected" <% end %>>
@@ -41,8 +45,8 @@
   
   <div class="form-group">
     <label>Or add a new company:</label>
-    <input type="text" name="new_company" placeholder="New Company's Name">
+    <input class="form-control" type="text" name="new_company" placeholder="New Company's Name">
   </div>
   
-  <input type="submit" name="submit" value="Save Changes">
+  <button class="btn btn-primary" type="submit">Save Changes</button>
 </form>

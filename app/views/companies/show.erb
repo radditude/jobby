@@ -8,11 +8,14 @@
 
 <h1><%= @company.name %></h1>
 <% if @company.website != "" %>
-    <p><a href="<%= @company.website %>">Website</a></p>
+    <p>Website: <a href="<%= @company.website %>"><%= @company.website %></a></p>
 <% end %>
-<p><a href="/companies/<%= @company.slug %>/edit">Edit Info</a></p>
 
-<form action="/companies/<%= @company.slug %>" method="post">
+<hr />
+
+<form class="form-inline" action="/companies/<%= @company.slug %>" method="post">
+  <a class="btn btn-primary" href="/companies/<%= @company.slug %>/edit">Edit Info</a>
+  <a class="btn btn-primary" href="/companies">Back to List</a>
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" name="delete" value="Delete Company">
+  <input class="form-control btn btn-danger" type="submit" name="delete" value="Delete Company">
 </form>
