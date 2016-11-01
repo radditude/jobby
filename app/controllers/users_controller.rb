@@ -84,10 +84,18 @@ class UsersController < ApplicationController
       @user.username = params[:username]
       @user.email = params[:email]
       if @user.save
-        redirect to("/user/#{@user.id}")
+        redirect to("/user")
       else
-        redirect to("/user/#{@user.id}/edit")
+        redirect to("/user/edit")
       end
+    else
+      redirect '/'
+    end
+  end
+  
+  get '/delete' do
+    if logged_in
+      erb :'/users/delete'
     else
       redirect '/'
     end
