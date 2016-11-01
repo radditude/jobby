@@ -5,30 +5,44 @@
   <li><a href="/potentialjobs/<%= @job.id %>/edit">Edit</a></li>
 </ol>
 
+<h1>Edit Job Info</h1>
+
 <form action="/potentialjobs/<%= @job.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <input type="text" name="job_title" value="<%= @job.job_title %>">
-  <input type="text" name="link" value="<%= @job.link %>">
-  <label>Status:</label>
-  <select name="status">
-    <option value="Not yet applied">Not yet applied</option>
-    <option value="Applied">Applied</option>
-    <option value="Phone screen">Phone screen</option>
-    <option value="Interview">Interview</option>
-    <option value="Offer">Offer</option>
-    <option value="Declined">Declined</option>
-  </select>
-  <br />
-  <label>Choose an existing company:</label>
-  <select name="company">
+  <div class="form-group">
+    <input type="text" name="job_title" value="<%= @job.job_title %>">
+  </div>
+  <div class="form-group">
+    <input type="text" name="link" value="<%= @job.link %>">
+  </div>
+  
+  <div class="form-group">
+    <label>Status:</label>
+    <select name="status">
+      <option value="Not yet applied">Not yet applied</option>
+      <option value="Applied">Applied</option>
+      <option value="Phone screen">Phone screen</option>
+      <option value="Interview">Interview</option>
+      <option value="Offer">Offer</option>
+      <option value="Declined">Declined</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Choose an existing company:</label>
+    <select name="company">
       <option value="">Choose company</option>
-      <% @user.companies.each do |company|%>
+      <% @current_user.companies.each do |company|%>
           <option value="<%= company.id %>" <% if @job.company == company %> selected="selected" <% end %>>
             <%= company.name %>
           </option>
       <% end %>
-  </select>
-  <label>Or add a new company:</label>
-  <input type="text" name="new_company" placeholder="New Company's Name">
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Or add a new company:</label>
+    <input type="text" name="new_company" placeholder="New Company's Name">
+  </div>
+  
   <input type="submit" name="submit" value="Save Changes">
 </form>
