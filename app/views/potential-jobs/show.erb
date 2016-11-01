@@ -10,14 +10,17 @@
 
 <p>Status: <%= @job.status %></p>
 
-<p><a href="<%= @job.link %>">Link to application page</a></p>
+<p>Link to Job Posting: <a href="<%= @job.link %>"><%= @job.link %></a></p>
 
 <p><i>Last updated on <%= @job.updated_at.strftime("%B %e") %></i></p>
 
-<p><a href="/potentialjobs/<%= @job.id %>/edit">Edit Info</a></p>
-<p><a href="/potentialjobs">Back to List</a></p>
+<hr />
 
-<form action="/potentialjobs/<%= @job.id %>" method="post">
+
+
+<form class="form-inline" action="/potentialjobs/<%= @job.id %>" method="post">
+  <a class="btn btn-primary" href="/potentialjobs/<%= @job.id %>/edit">Edit Info</a>
+  <a class="btn btn-primary" href="/potentialjobs">Back to List</a>
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" name="delete" value="Delete This Job">
+  <input class="form-control btn btn-danger" type="submit" name="delete" value="Delete This Job">
 </form>

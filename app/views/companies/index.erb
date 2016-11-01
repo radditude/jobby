@@ -10,7 +10,6 @@
 <a class="btn btn-primary btn-xs" href="/companies/new">Add New</a>
 <br />
 <br />
-<br />
 <div class="list-group">
     <% @current_user.companies.each do |company| %>
       <a class="list-group-item" href="/companies/<%= company.slug %>"><%= company.name %></a>
