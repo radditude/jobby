@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if !logged_in
       erb :'/users/new'
     else
-      redirect '/potentialjobs'
+      redirect '/'
     end
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
-        redirect to '/potentialjobs'
+        redirect '/'
       else
         erb :error
       end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in
-      redirect to '/potentialjobs'
+      redirect '/'
     else
       erb :'/users/login'
     end
@@ -39,12 +39,12 @@ class UsersController < ApplicationController
 
   post '/login' do
       if logged_in
-        redirect to '/potentialjobs'
+        redirect '/'
       else
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
-          redirect to '/potentialjobs'
+          redirect to '/'
         else
           erb :error
         end
