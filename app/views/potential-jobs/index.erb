@@ -1,7 +1,13 @@
-<h1>Some Jobs Will Go Here!</h1>
-<h4><a href="/potentialjobs/new">Add New</a></h4>
-<% @user.potential_jobs.each do |job| %>
-  <p>
-    <a href="/potentialjobs/<%= job.id %>"><%= job.job_title %> | <%= job.company.name %> | <%= job.status %></a>
-  </p>
-<% end %>
+<% @title = "Jobby - Potential Jobs" %>
+
+<h1>Potential Jobs</h1>
+<br />
+<a class="btn btn-primary btn-xs" href="/potentialjobs/new">Add New</a>
+<br />
+<br />
+<br />
+<div class="list-group">
+  <% @current_user.potential_jobs.each do |job| %>
+    <a class="list-group-item" href="/potentialjobs/<%= job.id %>"><%= job.job_title %> at <b><%= job.company.name %></b> | <i><%= job.status %></i></a>
+  <% end %>
+</div>

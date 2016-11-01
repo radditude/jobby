@@ -9,7 +9,6 @@ class PotentialJobsController < ApplicationController
 
   get '/potentialjobs' do
     if logged_in
-      @user = current_user
       erb :'/potential-jobs/index'
     else
       redirect '/'
@@ -18,7 +17,6 @@ class PotentialJobsController < ApplicationController
 
   get '/potentialjobs/new' do
     if logged_in
-      @user = current_user
       erb :'/potential-jobs/new'
     else
       redirect '/'
@@ -27,21 +25,20 @@ class PotentialJobsController < ApplicationController
 
   post '/potentialjobs' do
     if logged_in
-      @user = current_user
       if params[:new_company] == ""
         if params[:company] == ""
-          erb :error
+          erb :'/application/error'
         else
-          @company = @user.companies.find_by_id(params[:company])
+          @company = @current_user.companies.find_by_id(params[:company])
         end
       else
-        @company = @user.companies.create(name: params[:new_company])
+        @company = @current_user.companies.create(name: params[:new_company])
       end
       job = @company.potential_jobs.new(job_title: params[:job_title], link: params[:link], status: params[:status])
       if job.save
         redirect '/potentialjobs'
       else
-        erb :error
+        erb :'/application/error'
       end
     else
       redirect '/'
@@ -50,8 +47,7 @@ class PotentialJobsController < ApplicationController
 
   get '/potentialjobs/:id' do
     if logged_in
-      @user = current_user
-      @job = @user.potential_jobs.find_by_id(params[:id])
+      @job = @current_user.potential_jobs.find_by_id(params[:id])
       erb :'/potential-jobs/show'
     else
       redirect '/'
@@ -60,8 +56,7 @@ class PotentialJobsController < ApplicationController
 
   get '/potentialjobs/:id/edit' do
     if logged_in
-      @user = current_user
-      @job = current_user.potential_jobs.find_by_id(params[:id])
+      @job = @current_user.potential_jobs.find_by_id(params[:id])
       erb :'/potential-jobs/edit'
     else
       redirect '/'
@@ -70,22 +65,20 @@ class PotentialJobsController < ApplicationController
 
   patch '/potentialjobs/:id' do
     if logged_in
-      @user = current_user
       if params[:new_company] == ""
         if params[:company] == ""
-          erb :error
+          erb :'/application/error'
         else
-          @company = @user.companies.find_by_id(params[:company])
+          @company = @current_user.companies.find_by_id(params[:company])
         end
       else
-        @company = @user.companies.create(name: params[:new_company])
-        #binding.pry
+        @company = @current_user.companies.create(name: params[:new_company])
       end
       job = @company.potential_jobs.find_by_id(params[:id])
       if job.update(job_title: params[:job_title], link: params[:link], status: params[:status])
         redirect '/potentialjobs'
       else
-        erb :error
+        erb :'/application/error'
       end
     else
       redirect '/'
@@ -94,8 +87,7 @@ class PotentialJobsController < ApplicationController
 
   delete '/potentialjobs/:id' do
     if logged_in
-      user = current_user
-      job = user.potential_jobs.find_by_id(params[:id])
+      job = @current_user.potential_jobs.find_by_id(params[:id])
       job.destroy
       redirect '/'
     else

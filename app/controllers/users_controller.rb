@@ -19,12 +19,12 @@ class UsersController < ApplicationController
     if logged_in
       redirect '/jobs'
     else
-      @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-      if @user.save
-        session[:user_id] = @user.id
+      user = User.new(username: params[:username], email: params[:email], password: params[:password])
+      if user.save
+        session[:user_id] = user.id
         redirect '/'
       else
-        erb :error
+        erb :'/application/error'
       end
     end
   end
@@ -41,12 +41,12 @@ class UsersController < ApplicationController
       if logged_in
         redirect '/'
       else
-        @user = User.find_by(username: params[:username])
-        if @user && @user.authenticate(params[:password])
-          session[:user_id] = @user.id
+        user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
           redirect to '/'
         else
-          erb :error
+          erb :'/application/error'
         end
       end
   end
@@ -80,10 +80,9 @@ class UsersController < ApplicationController
 
   patch '/user' do
     if logged_in
-      @user = current_user
-      @user.username = params[:username]
-      @user.email = params[:email]
-      if @user.save
+      @current_user.username = params[:username]
+      @current_user.email = params[:email]
+      if @current_user.save
         redirect to("/user")
       else
         redirect to("/user/edit")
@@ -103,8 +102,7 @@ class UsersController < ApplicationController
 
   delete '/user' do
     if logged_in
-      user = current_user
-      user.destroy
+      @current_user.destroy
       redirect '/'
     else
       redirect '/'

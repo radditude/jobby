@@ -11,7 +11,6 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in
-      @user = current_user
       erb :'/application/home'
     else
       erb :'/application/welcome'
