@@ -1,5 +1,13 @@
+<% @title = "Jobby - Add New Company" %>
+
+<h1>Add a New Company</h1>
+
 <form action="/companies" method="post">
-  <input type="text" name="name" placeholder="Company Name">
-  <input type="text" name="website" placeholder="Company Website">
-  <input type="submit" name="submit" value="Add New Company">
+  <div class="form-group">
+    <input class="form-control" type="text" name="name" placeholder="Company Name">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" name="website" placeholder="Company Website">
+  </div>
+  <button class="btn btn-primary" type="submit">Add New Company</button>
 </form>
