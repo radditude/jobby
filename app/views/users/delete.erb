@@ -1,5 +1,8 @@
-<% @title = "Jobby - Delete Account" %>
+<% @title = "Jobby - Confirm Deletion" %>
+
 <h1>You're sure?</h1>
+
+<hr />
 
 <a class="btn btn-primary btn-xs" href="/">No, take me back to safety.</a>
 
@@ -8,5 +11,5 @@
 
 <form action="/user" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <button class="btn btn-danger btn-xs" type="submit" name="delete">Delete My Account</button>
+  <button class="btn btn-danger btn-xs" type="submit" name="delete">Yes, delete all my info.</button>
 </form>

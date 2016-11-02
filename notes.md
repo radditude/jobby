@@ -1,3 +1,9 @@
+-see about ordering for index pages
+-look over Fwitter feedback
+-refactor controllers
+-blog
+-video walkthrough
+
 All Routes Down! Time to start refining the UI
 
 - get / - loads signup/login splash screen for not logged in users, redirects to index page if not. Potential_jobs index for now, in future I'd like to do a splashier homepage that displays all recent activity, reminders, etc. This is all that users can see if not logged in.
