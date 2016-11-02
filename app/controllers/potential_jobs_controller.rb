@@ -8,90 +8,61 @@ class PotentialJobsController < ApplicationController
   end
 
   get '/potentialjobs' do
-    if logged_in
-      erb :'/potential-jobs/index'
-    else
-      redirect '/'
-    end
+    erb :'/potential-jobs/index'
   end
 
   get '/potentialjobs/new' do
-    if logged_in
-      erb :'/potential-jobs/new'
-    else
-      redirect '/'
-    end
+    erb :'/potential-jobs/new'
   end
 
   post '/potentialjobs' do
-    if logged_in
-      if params[:new_company] == ""
-        if params[:company] == ""
-          erb :'/application/error'
-        else
-          @company = @current_user.companies.find_by_id(params[:company])
-        end
-      else
-        @company = @current_user.companies.create(name: params[:new_company])
-      end
-      job = @company.potential_jobs.new(job_title: params[:job_title], link: params[:link], status: params[:status])
-      if job.save
-        redirect '/potentialjobs'
-      else
-        erb :'/application/error'
-      end
+    if params["new_company"].empty? && !params["company"]
+      redirect '/error'
+    elsif !params[:new_company].empty?
+      @company = current_user.companies.find_or_create_by(name: params[:new_company])
     else
-      redirect '/'
+      @company = current_user.companies.find_by_id(params[:company])
+    end
+
+    if @company.potential_jobs.create(params[:info])
+      redirect '/potentialjobs'
+    else
+      redirect '/error'
     end
   end
 
   get '/potentialjobs/:id' do
-    if logged_in
-      @job = @current_user.potential_jobs.find_by_id(params[:id])
-      erb :'/potential-jobs/show'
-    else
-      redirect '/'
-    end
+    erb :'/potential-jobs/show'
   end
 
   get '/potentialjobs/:id/edit' do
-    if logged_in
-      @job = @current_user.potential_jobs.find_by_id(params[:id])
-      erb :'/potential-jobs/edit'
-    else
-      redirect '/'
-    end
+    erb :'/potential-jobs/edit'
   end
 
   patch '/potentialjobs/:id' do
-    if logged_in
-      if params[:new_company] == ""
-        if params[:company] == ""
-          erb :'/application/error'
-        else
-          @company = @current_user.companies.find_by_id(params[:company])
-        end
-      else
-        @company = @current_user.companies.create(name: params[:new_company])
-      end
-      job = @company.potential_jobs.find_by_id(params[:id])
-      if job.update(job_title: params[:job_title], link: params[:link], status: params[:status])
-        redirect '/potentialjobs'
-      else
-        erb :'/application/error'
-      end
+    if params["new_company"].empty? && !params["company"]
+      redirect '/error'
+    elsif !params[:new_company].empty?
+      @company = current_user.companies.find_or_create_by(name: params[:new_company])
     else
-      redirect '/'
+      @company = current_user.companies.find_by_id(params[:company])
+    end
+
+    if current_job.update(params[:info])
+      redirect '/potentialjobs'
+    else
+      redirect '/error'
     end
   end
 
   delete '/potentialjobs/:id' do
-    if logged_in
-      job = @current_user.potential_jobs.find_by_id(params[:id])
-      job.destroy
-      redirect '/'
-    else
-      redirect '/'
+    current_job.destroy
+    redirect '/'
+  end
+
+  helpers do
+    def current_job
+      current_user.potential_jobs.find_by_id(params[:id])
     end
   end
 

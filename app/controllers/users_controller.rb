@@ -8,23 +8,23 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    if !logged_in
-      erb :'/users/new'
-    else
+    if logged_in
       redirect '/'
+    else
+      erb :'/users/new'
     end
   end
 
   post '/signup' do
     if logged_in
-      redirect '/jobs'
+      redirect '/'
     else
-      user = User.new(username: params[:username], email: params[:email], password: params[:password])
+      user = User.new(params)
       if user.save
         session[:user_id] = user.id
         redirect '/'
       else
-        erb :'/application/error'
+        redirect '/error'
       end
     end
   end
@@ -52,61 +52,34 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    if logged_in
-      session.clear
-      redirect '/'
-    else
-      redirect '/'
-    end
+    session.clear
+    redirect '/'
   end
 
+
   get '/user' do
-    if logged_in
-      @user = current_user
-      erb :'/users/show'
-    else
-      redirect '/'
-    end
+    erb :'/users/show'
   end
 
   get '/user/edit' do
-    if logged_in
-      @user = current_user
-      erb :'/users/edit'
-    else
-      redirect '/'
-    end
+    erb :'/users/edit'
   end
 
   patch '/user' do
-    if logged_in
-      @current_user.username = params[:username]
-      @current_user.email = params[:email]
-      if @current_user.save
-        redirect to("/user")
-      else
-        redirect to("/user/edit")
-      end
+    if current_user.update(params[:user])
+      redirect to("/user")
     else
-      redirect '/'
-    end
-  end
-  
-  get '/delete' do
-    if logged_in
-      erb :'/users/delete'
-    else
-      redirect '/'
+      redirect to("/user/edit")
     end
   end
 
+  get '/delete' do
+    erb :'/users/delete'
+  end
+
   delete '/user' do
-    if logged_in
-      @current_user.destroy
-      redirect '/'
-    else
-      redirect '/'
-    end
+    current_user.destroy
+    redirect '/'
   end
 
 end

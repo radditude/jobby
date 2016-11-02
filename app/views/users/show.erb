@@ -7,11 +7,10 @@
 
 <h1>User Info</h1>
 
-<h4><b>Username</b>: <%= @current_user.username %></h4>
-<h4><b>Email</b>: <%= @current_user.email %></h4>
+<h4><b>Username</b>: <%= current_user.username %></h4>
+<h4><b>Email</b>: <%= current_user.email %></h4>
 <hr />
 
 <a class="btn btn-primary" href="/user/edit">Edit Info or Change Password</a>
 
 <a href="/delete" class="btn btn-danger">Delete My Account</a>
-

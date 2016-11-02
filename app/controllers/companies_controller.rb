@@ -1,3 +1,4 @@
+require 'pry'
 class CompaniesController < ApplicationController
 
   configure do
@@ -8,76 +9,45 @@ class CompaniesController < ApplicationController
   end
 
   get '/companies' do
-    if logged_in
-      erb :'/companies/index'
-    else
-      redirect '/'
-    end
+    erb :'/companies/index'
   end
 
   get '/companies/new' do
-    if logged_in
-      erb :'/companies/new'
-    else
-      redirect '/'
-    end
+    erb :'/companies/new'
   end
 
   post '/companies' do
-    if logged_in
-      if !@current_user.companies.include?(Company.find_by(name: params[:name]))
-        @company = @current_user.companies.new(name: params[:name], website: params[:website])
-        if @company.save
-          redirect to("/companies")
-        else
-          erb :'/application/error'
-        end
-      else
-        erb :'/application/error'
-      end
+    if current_user.companies.find_or_create_by(params)
+      redirect to("/companies")
     else
-      redirect '/'
+      redirect '/error'
     end
   end
 
   get '/companies/:slug' do
-    if logged_in
-      @company = @current_user.companies.find_by_slug(params[:slug])
-      erb :'/companies/show'
-    else
-      redirect '/'
-    end
+    erb :'/companies/show'
   end
-  
+
   get '/companies/:slug/edit' do
-    if logged_in
-      @company = current_user.companies.find_by_slug(params[:slug])
-      erb :'/companies/edit'
-    else
-      redirect '/'
-    end
+    erb :'/companies/edit'
   end
-  
+
   patch '/companies/:slug' do
-    if logged_in
-      @company = current_user.companies.find_by_slug(params[:slug])
-      if @company.update(name: params[:name], website: params[:website])
-        redirect to("/companies/#{@company.slug}")
-      else
-        erb :'/application/error'
-      end
+    if current_company.update(name: params[:name], website: params[:website])
+      redirect to("/companies/#{current_company.slug}")
     else
-      redirect '/'
+      redirect '/error'
     end
   end
-  
+
   delete '/companies/:slug' do
-    if logged_in
-      @company = current_user.companies.find_by_slug(params[:slug])
-      @company.destroy
-      redirect '/companies'
-    else
-      redirect '/'
+    current_company.destroy
+    redirect '/companies'
+  end
+
+  helpers do
+    def current_company
+      current_user.companies.find_by_slug(params[:slug])
     end
   end
 

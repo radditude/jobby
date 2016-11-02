@@ -3,19 +3,19 @@
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a href="/companies">Companies</a></li>
-  <li><a href="/companies/<%= @company.id %>">View</a></li>
-  <li><a href="/companies/<%= @company.id %>/edit">Edit</a></li>
+  <li><a href="/companies/<%= current_company.id %>">View</a></li>
+  <li><a href="/companies/<%= current_company.id %>/edit">Edit</a></li>
 </ol>
 
-<form action="/companies/<%= @company.slug %>" method="post">
+<form action="/companies/<%= current_company.slug %>" method="post">
     <input id="hidden" type="hidden" name = "_method" value="PATCH">
     <div class="form-group">
       <label>Name</label>
-      <input class="form-control" type="text" name="name" value="<%= @company.name %>">
+      <input class="form-control" type="text" name="name" value="<%= current_company.name %>">
     </div>
     <div class="form-group">
       <label>Website</label>
-      <input class="form-control" type="text" name="website" value="<%= @company.website %>">
+      <input class="form-control" type="text" name="website" value="<%= current_company.website %>">
     </div>
     <button class="btn btn-primary" type="submit">Save New Info</button>
 </form>

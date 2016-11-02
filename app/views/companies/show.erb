@@ -3,18 +3,18 @@
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a href="/companies">Companies</a></li>
-  <li><a href="/companies/<%= @company.id %>">View Job</a></li>
+  <li><a href="/companies/<%= current_company.id %>">View Job</a></li>
 </ol>
 
-<h1><%= @company.name %></h1>
-<% if @company.website != "" %>
-    <p>Website: <a href="<%= @company.website %>"><%= @company.website %></a></p>
+<h1><%= current_company.name %></h1>
+<% if current_company.website != "" %>
+    <p>Website: <a href="<%= current_company.website %>"><%= current_company.website %></a></p>
 <% end %>
 
 <hr />
 
-<form class="form-inline" action="/companies/<%= @company.slug %>" method="post">
-  <a class="btn btn-primary" href="/companies/<%= @company.slug %>/edit">Edit Info</a>
+<form class="form-inline" action="/companies/<%= current_company.slug %>" method="post">
+  <a class="btn btn-primary" href="/companies/<%= current_company.slug %>/edit">Edit Info</a>
   <a class="btn btn-primary" href="/companies">Back to List</a>
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input class="form-control btn btn-danger" type="submit" name="delete" value="Delete Company">

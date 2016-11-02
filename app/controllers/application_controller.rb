@@ -9,12 +9,23 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "difficult_passphrase"
   end
 
+  before do
+   pass if ["login", "signup", nil].include? request.path_info.split('/')[1]
+   if !logged_in
+     redirect '/'
+   end
+ end
+
   get "/" do
     if logged_in
       erb :'/application/home'
     else
       erb :'/application/welcome'
     end
+  end
+
+  get '/error' do
+    erb :'/application/error'
   end
 
   helpers do
