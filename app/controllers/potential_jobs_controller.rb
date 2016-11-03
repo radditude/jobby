@@ -49,7 +49,7 @@ class PotentialJobsController < ApplicationController
     end
 
     if current_job.update(params[:info])
-      redirect '/potentialjobs'
+      redirect to("/potentialjobs/#{current_job.id}")
     else
       redirect '/error'
     end

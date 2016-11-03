@@ -33,8 +33,9 @@ class CompaniesController < ApplicationController
   end
 
   patch '/companies/:slug' do
-    if current_company.update(name: params[:name], website: params[:website])
-      redirect to("/companies/#{current_company.slug}")
+    company = current_company
+    if company.update(params[:info])
+      redirect to("/companies/#{company.slug}")
     else
       redirect '/error'
     end
