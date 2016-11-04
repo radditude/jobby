@@ -4,12 +4,12 @@ class Company < ActiveRecord::Base
   validates_presence_of :name
 
   def slug
-    self.name.gsub(" ", "-").downcase
+    self.name.downcase.gsub(" ", "-").gsub(/[^\w-]/, '').squeeze('-')
   end
 
   def self.find_by_slug(slug)
     self.all.find do |object|
-      object.name.downcase.gsub(" ", "-") == slug
+      object.name.downcase.gsub(" ", "-").gsub(/[^\w-]/, '') == slug
     end
   end
 end
