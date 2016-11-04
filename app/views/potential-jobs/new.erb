@@ -8,15 +8,18 @@
 
 <h1>Add A New Potential Job</h1>
 
-<form action="/potentialjobs" method="post">
+<form data-toggle="validator" role="form" action="/potentialjobs" method="post">
   <div class="form-group">
-    <label>Job Title</label>
-    <input class="form-control" type="text" name="info[job_title]" placeholder="Job Title">
+    <label class="control-label">Job Title</label>
+    <input class="form-control" type="text" name="info[job_title]" placeholder="Job Title" required>
   </div>
 
   <div class="form-group">
     <label>Link to Posting</label>
-    <input class="form-control" type="text" name="info[link]" value="http://">
+    <div class="input-group">
+        <span class="input-group-addon">http://</span>
+        <input class="form-control" type="text" name="info[link]">
+    </div>
   </div>
 
   <div class="form-group">

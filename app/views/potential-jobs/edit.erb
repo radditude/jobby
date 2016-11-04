@@ -9,16 +9,19 @@
 
 <h1>Edit Job Info</h1>
 
-<form action="/potentialjobs/<%= current_job.id %>" method="post">
+<form data-toggle="validator" role="form" action="/potentialjobs/<%= current_job.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <div class="form-group">
-    <label>Job Title</label>
-    <input class="form-control" type="text" name="info[job_title]" value="<%= current_job.job_title %>">
+    <label class="control-label">Job Title</label>
+    <input class="form-control" type="text" name="info[job_title]" value="<%= current_job.job_title %>" required>
   </div>
 
   <div class="form-group">
     <label>Link to Posting</label>
-    <input class="form-control" type="text" name="info[link]" value="<%= current_job.link %>">
+    <div class="input-group">
+      <span class="input-group-addon">http://</span>
+      <input class="form-control" type="text" name="info[link]" value="<%= current_job.link %>">
+    </div>
   </div>
 
   <div class="form-group">
