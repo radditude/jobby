@@ -1,12 +1,5 @@
 <% @title = "Jobby - Edit Company Info" %>
 
-<ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/companies">Companies</a></li>
-  <li><a href="/companies/<%= current_company.id %>">View</a></li>
-  <li><a href="/companies/<%= current_company.id %>/edit">Edit</a></li>
-</ol>
-
 <form data-toggle="validator" role="form" action="/companies/<%= current_company.slug %>" method="post">
     <input id="hidden" type="hidden" name = "_method" value="PATCH">
     <div class="form-group">

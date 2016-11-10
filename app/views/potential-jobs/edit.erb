@@ -1,12 +1,5 @@
 <% @title = "Jobby - Edit Job Info" %>
 
-<ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/potentialjobs">Potential Jobs</a></li>
-  <li><a href="/potentialjobs/<%= current_job.id %>">View</a></li>
-  <li><a href="/potentialjobs/<%= current_job.id %>/edit">Edit</a></li>
-</ol>
-
 <h1>Edit Job Info</h1>
 
 <form data-toggle="validator" role="form" action="/potentialjobs/<%= current_job.id %>" method="post">

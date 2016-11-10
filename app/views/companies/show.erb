@@ -1,11 +1,5 @@
 <% @title = "Jobby - View Company Info" %>
 
-<ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/companies">Companies</a></li>
-  <li><a href="/companies/<%= current_company.id %>">View Job</a></li>
-</ol>
-
 <h1><%= current_company.name %></h1>
 <% if current_company.website != "" %>
     <p><b>Website:</b> <a href="<%= current_company.website %>"><%= current_company.website %></a></p>

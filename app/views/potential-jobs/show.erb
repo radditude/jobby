@@ -1,11 +1,5 @@
 <% @title = "Jobby - View Info" %>
 
-<ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/potentialjobs">Potential Jobs</a></li>
-  <li><a href="/potentialjobs/<%= current_job.id %>">View Job</a></li>
-</ol>
-
 <h2><%= current_job.job_title %> at <b><%= current_job.company.name %></b></h2>
 
 <p><b>Status:</b> <%= current_job.status %></p>

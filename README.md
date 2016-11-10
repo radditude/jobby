@@ -26,4 +26,4 @@ This software is available as open source under the terms of the [MIT License](h
 
 ## Credits
 
-Thanks to Brian Emory and his [Corneal](https://github.com/thebrianemory/corneal) gem!
+Thanks to Brian Emory and his [Corneal](https://github.com/thebrianemory/corneal) gem for helping iron out the basic file structure. The [Bootstrap Validator](http://1000hz.github.io/bootstrap-validator/) by Cina Saffary was a big help on the front end.

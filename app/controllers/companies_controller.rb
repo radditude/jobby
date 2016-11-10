@@ -1,4 +1,4 @@
-require 'pry'
+
 class CompaniesController < ApplicationController
 
   configure do
