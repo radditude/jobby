@@ -8,9 +8,11 @@
 
 <h2><%= current_job.job_title %> at <b><%= current_job.company.name %></b></h2>
 
-<p>Status: <%= current_job.status %></p>
+<p><b>Status:</b> <%= current_job.status %></p>
 
-<p>Link to Job Posting: <a href="<%= current_job.link %>"><%= current_job.link %></a></p>
+<p><b>Link to Job Posting:</b> <a href="<%= current_job.link %>"><%= current_job.link %></a></p>
+
+<p><b>Notes:</b> <%= current_job.notes %>
 
 <p><i>Last updated on <%= current_job.updated_at.strftime("%B %e") %></i></p>
 

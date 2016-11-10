@@ -8,8 +8,9 @@
 
 <h1><%= current_company.name %></h1>
 <% if current_company.website != "" %>
-    <p>Website: <a href="<%= current_company.website %>"><%= current_company.website %></a></p>
+    <p><b>Website:</b> <a href="<%= current_company.website %>"><%= current_company.website %></a></p>
 <% end %>
+<p><b>Notes:</b> <%= current_company.notes %></p>
 
 <hr />
 
