@@ -20,7 +20,7 @@
     <% if logged_in %>
       <div class="row">
       <div class="col-md-6 col-md-offset-3">
-      <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-inverse navbar-static-top">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
@@ -37,8 +37,8 @@
             </ul>
           <ul class="nav navbar-nav navbar-right">
               <li><a href="/user"><span class="glyphicon glyphicon-cog" aria-hidden="true" aria-label="Settings"></span></a></li>
-              <li id="logout"><button type="button" class="btn btn-default navbar-btn"><a href="/logout">Log Out</a></button></li>
-              <li>&nbsp;&nbsp;</li>
+              <li id="logout"><a href="/logout">Log Out</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
           </ul>
           </div><!-- /.navbar-collapse -->
       </nav>

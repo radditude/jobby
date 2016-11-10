@@ -1,3 +1,4 @@
+require 'pry'
 class PotentialJobsController < ApplicationController
 
   configure do
